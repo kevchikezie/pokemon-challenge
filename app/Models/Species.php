@@ -48,4 +48,9 @@ class Species extends Model
         return $this->belongsTo(Habitat::class);
     }
 
+    public function pokemons()
+    {
+        return $this->hasMany(Pokemon::class);
+    }
+
 }
