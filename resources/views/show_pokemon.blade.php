@@ -23,41 +23,38 @@
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            
-                        <a href="{{ url('/') }}" class="text-sm dark:text-gray-500 underline text-red">Home</a>
-            
-                        <a href="{{ route('index.pokemon') }}" class="text-sm dark:text-gray-500 underline ml-4 text-red">Pokemons</a>
-
-                </div>
-
+            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    <a href="{{ route('index.pokemon') }}" class="text-sm dark:text-gray-500 underline text-red">Home</a>
+            </div>
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <h1 class="text-red">Pokemon</h1>
+                    <h1 class="text-red">{{ ucfirst($pokemon->identifier) }}</h1>
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="p-6">
-                            <div class="flex items-center">
-                                <div class="ml-4 text-lg leading-7 font-semibold"><span class="underline text-gray-900 dark:text-white">{{ $pokemon->identifier }}</span></div>
-                            </div>
-
                             <div class="ml-4">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                     <span class="mr-4"><b>Weight:</b> {{ $pokemon->weight }}</span>
                                     <span class="mr-4"><b>Height:</b> {{ $pokemon->height }}</span>
                                     <span class="mr-4"><b>Base Experience:</b> {{ $pokemon->base_experience }}</span>
-                                    <span class="mr-4"><b>Region:</b> {{ $pokemon->species->generation->region->identifier }}</span>
+                                    <span class="mr-4"><b>Region:</b> {{ ucfirst($pokemon->species->generation->region->identifier) }}</span>
                                 </div>
                             </div>
 
                             <div class="ml-4 mt-4">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                <span class="mr-4"><b>Generation:</b> {{ $pokemon->species->generation->identifier }}</span>
-                                    <span class="mr-4"><b>Color:</b> {{ $pokemon->species->color->identifier }}</span>
-                                    <span class="mr-4"><b>Shape:</b> {{ $pokemon->species->shape->identifier }}</span>
+                                    <span class="mr-4"><b>Generation:</b> {{ ucfirst($pokemon->species->generation->identifier) }}</span>
+                                    <span class="mr-4"><b>Color:</b> {{ ucfirst($pokemon->species->color->identifier) }}</span>
+                                    <span class="mr-4"><b>Shape:</b> {{ ucfirst($pokemon->species->shape->identifier) }}</span>
+                                </div>
+                            </div>
+
+                            <div class="ml-4 mt-4">
+                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    <span class="mr-4"><b>Habitat:</b> {{ ucfirst($pokemon->species->habitat->identifier) }}</span>
                                 </div>
                             </div>
                         </div>                        
