@@ -26,12 +26,23 @@ class PokemonService
     /**
      * Get list of paginated records from storage
      * 
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  int  $page
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function paginatedRecords()
+    public function paginatedRecords(int $page = 15)
     {
-        return Pokemon::paginate();
+        return $this->pokemon->paginate($page);
+    }
+
+    /**
+     * Get list of paginated records from storage
+     * 
+     * @param  int  $page
+     * @return \App\Models\Pokemon
+     */
+    public function findRecord(int $id)
+    {
+        return $this->pokemon->find($id);
     }
 
 }
