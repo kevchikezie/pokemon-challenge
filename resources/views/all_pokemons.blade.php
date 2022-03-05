@@ -24,7 +24,7 @@
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    <a href="{{ route('index.pokemon') }}" class="text-sm dark:text-gray-500 underline text-red">Home</a>
+                    <a href="{{ route('pokemons.index') }}" class="text-sm dark:text-gray-500 underline text-red">Home</a>
             </div>
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
@@ -36,7 +36,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="p-6">
                             <div class="flex items-center">
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ route('show.pokemon', $pokemon->id) }}" class="underline text-gray-900 dark:text-white">{{ $pokemon->identifier }}</a></div>
+                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ route('pokemons.show', $pokemon->id) }}" class="underline text-gray-900 dark:text-white">{{ $pokemon->identifier }}</a></div>
                             </div>
 
                             <div class="ml-4">

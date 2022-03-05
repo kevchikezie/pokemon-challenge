@@ -48,8 +48,22 @@ class PokemonController extends Controller
     public function show(Request $request, $id)
     {
         $pokemon = $this->pokemonService->findRecord($id);
-        // dd($pokemon);
+
         return view('show_pokemon', compact('pokemon'));
+    }
+
+    /**
+     * List all pokemon
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request, $id)
+    {
+        $pokemon = $this->pokemonService->findRecord($id);
+        
+        return view('edit_pokemon', compact('pokemon'));
     }
 
 }

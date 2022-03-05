@@ -24,7 +24,7 @@
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    <a href="{{ route('index.pokemon') }}" class="text-sm dark:text-gray-500 underline text-red">Home</a>
+                    <a href="{{ route('pokemons.index') }}" class="text-sm dark:text-gray-500 underline text-red">Home</a>
             </div>
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="grid grid-cols-1 md:grid-cols-1">
                         <div class="p-6">
                             <div class="ml-4">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
@@ -41,12 +41,13 @@
                                     <span class="mr-4"><b>Height:</b> {{ $pokemon->height }}</span>
                                     <span class="mr-4"><b>Base Experience:</b> {{ $pokemon->base_experience }}</span>
                                     <span class="mr-4"><b>Region:</b> {{ ucfirst($pokemon->species->generation->region->identifier) }}</span>
+                                    <span class="mr-4"><b>Generation:</b> {{ ucfirst($pokemon->species->generation->identifier) }}</span>
                                 </div>
                             </div>
 
                             <div class="ml-4 mt-4">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    <span class="mr-4"><b>Generation:</b> {{ ucfirst($pokemon->species->generation->identifier) }}</span>
+                                    <span class="mr-4"><b>Habitat:</b> {{ ucfirst($pokemon->species->habitat->identifier) }}</span>
                                     <span class="mr-4"><b>Color:</b> {{ ucfirst($pokemon->species->color->identifier) }}</span>
                                     <span class="mr-4"><b>Shape:</b> {{ ucfirst($pokemon->species->shape->identifier) }}</span>
                                 </div>
@@ -54,13 +55,12 @@
 
                             <div class="ml-4 mt-4">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    <span class="mr-4"><b>Habitat:</b> {{ ucfirst($pokemon->species->habitat->identifier) }}</span>
+                                    <a class="underline text-red" href="{{ route('pokemons.edit', $pokemon->id) }}">Edit Pokeman</a>
                                 </div>
                             </div>
                         </div>                        
                     </div>
                 </div>
-
             </div>
         </div>
     </body>
