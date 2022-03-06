@@ -53,21 +53,37 @@
                                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                         Pokemon Name: <br>
                                         <input class="input" name="pokemon_name" type="text" value="{{ old('pokemon_name') ?? $pokemon->identifier }}">
+                                        <br>
+                                        @if ($errors->has('pokemon_name'))
+                                        <span class="text-red">{{ $errors->first('pokemon_name') }}</span>
+                                        @endif
                                     </div>
                             
                                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                         Weight: <br>
                                         <input class="input" name="weight" type="text" value="{{ old('weight') ?? $pokemon->weight }}">
+                                        <br>
+                                        @if ($errors->has('weight'))
+                                        <span class="text-red">{{ $errors->first('weight') }}</span>
+                                        @endif
                                     </div>
                                 
                                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                         Height: <br>
                                         <input class="input" name="height" type="text" value="{{ old('height') ?? $pokemon->height }}">
+                                        <br>
+                                        @if ($errors->has('height'))
+                                        <span class="text-red">{{ $errors->first('height') }}</span>
+                                        @endif
                                     </div>
                                 
                                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                         Base Experience: <br>
                                         <input class="input" name="base_experience" type="text" value="{{ old('base_experience') ?? $pokemon->base_experience }}">
+                                        <br>
+                                        @if ($errors->has('base_experience'))
+                                        <span class="text-red">{{ $errors->first('base_experience') }}</span>
+                                        @endif
                                     </div>
                                 
                                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
@@ -80,6 +96,10 @@
                                             >{{ $region->identifier }}</option>
                                             @endforeach
                                         </select>
+                                        <br>
+                                        @if ($errors->has('region'))
+                                        <span class="text-red">{{ $errors->first('region') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
@@ -92,6 +112,10 @@
                                             >{{ $generation->identifier }}</option>
                                             @endforeach
                                         </select>
+                                        <br>
+                                        @if ($errors->has('generation'))
+                                        <span class="text-red">{{ $errors->first('generation') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
@@ -104,6 +128,10 @@
                                             >{{ $habitat->identifier }}</option>
                                             @endforeach
                                         </select>
+                                        <br>
+                                        @if ($errors->has('habitat'))
+                                        <span class="text-red">{{ $errors->first('habitat') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
@@ -116,6 +144,10 @@
                                             >{{ $color->identifier }}</option>
                                             @endforeach
                                         </select>
+                                        <br>
+                                        @if ($errors->has('color'))
+                                        <span class="text-red">{{ $errors->first('color') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
@@ -128,6 +160,10 @@
                                             >{{ $shape->identifier }}</option>
                                             @endforeach
                                         </select>
+                                        <br>
+                                        @if ($errors->has('shape'))
+                                        <span class="text-red">{{ $errors->first('shape') }}</span>
+                                        @endif
                                     </div>
                                 </div>
 

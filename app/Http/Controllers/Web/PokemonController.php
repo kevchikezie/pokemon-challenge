@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\PokemonService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdatePokemonRequest;
 
 class PokemonController extends Controller
 {
@@ -70,11 +71,11 @@ class PokemonController extends Controller
     /**
      * List all pokemon
      * 
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdatePokemonRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePokemonRequest $request, $id)
     {
         DB::beginTransaction();
         $updated = $this->pokemonService->updateRecord($id, $request->all());
