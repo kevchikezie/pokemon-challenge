@@ -1,64 +1,127 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Pokemon Tasks
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Set up
 
-## About Laravel
+### Ensure you are in the project directory before running the commands below
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Create the project's `.env` file
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```bash
+cp .env.example .env
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Install the necessary composer packages
 
-## Learning Laravel
+```bash
+composer install
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Update the database variables in your `.env` file with your database 
+credentials. Open the `.env` file and update the database section with your own 
+database details
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```
+DB_USERNAME=your_db_username
+DB_PASSWORD=your_db_password
+```
 
-## Laravel Sponsors
+- Run the migration command to create the necssary table for the project
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```bash
+php artisan migrate
+```
 
-### Premium Partners
+- As for the pokemon dataset used in the project, kindly find a SQL dump file in 
+the database directory of the project
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- Start up the server by running the `artisan` command below
 
-## Contributing
+```bash
+php artisan serve
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Postman Collection
 
-## Code of Conduct
+The Postman collection for this project can be imported using the link below
+```text
+https://www.getpostman.com/collections/88d23a387c165a4c0425
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**NOTE:**
+Note that the SQL dump has all the necessary dataset for the project. Kindly 
+ensure it has been imported to your database before running the project.
 
-## Security Vulnerabilities
+## My Approach
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### The Dataset
 
-## License
+I made use of few dataset from the Pokemon dataset that was share in the brief. 
+The following tables were created from the dataset;
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Regions
+- Generations
+- Colors
+- Shapes
+- Habitats
+- Species
+- Pokemons
+
+After creating the above tables using Laravel migration, I proceeded to 
+importing the `csv` of each of the dataset to their individual tables that I 
+have already created.
+
+I also implemented the necessary table relationships that I found while in the 
+converting the dataset to tables.
+
+### Separation of Concerns
+
+The project has two (2) unique ways it can supply its data to a client
+Since the project is to be accessed by two (2) unique clients (i.e. web and 
+API), I decided to separate the pokemon controller into two; a controller for 
+the web and a controller for the API. 
+
+A major concern here is repitition of the core business logic for pokemon. 
+To avoid this repitition, I separated the business logic related to the pokemon 
+entity to a service class (i.e **App\Services\PokemonService**). Doing this 
+made it easy for me to reuse the business logic in the different pokemon 
+controllers (i.e. **App\Http\Controllers\Web\PokemonController** and 
+**App\Http\Controllers\Api\PokemonController**).
+
+I ensured the controller does its primary duty which is to receive a request 
+and return a response, which in this case can be a web page or a json response. 
+
+To further separate concerns in other parts of the project, I implemented the 
+form validation for editing a pokemon using Laravel Request 
+(i.e. **App\Http\Requests\UpdatePokemonRequest**). I also made use of 
+[Laravel's API Resource](https://laravel.com/docs/8.x/eloquent-resources) 
+to handle returning of the needed json response when viewing all pokemons 
+(**App\Http\Resources\PokemonCollection**) and when viewing the details of a 
+single pokemon (**App\Http\Resources\PokemonResource**).
+
+### Authentication Credentials
+
+I used the Laravel's basic auth middleware to guard the API endpoints for 
+fetching all pokemons and for fetching a single pokemon detail.
+
+The Postman collection already has the credentials for the basic auth set up. 
+Just in case the credentials does not exist in the Postman collection, the 
+credentials below can be used;
+
+```text
+tester@mail.com
+password
+```
+
+### Future Improvements
+
+The following improvements can be made over time in the project; 
+
+1. Some unit and integration test can be written to avoid breaking of codes 
+when a new feature is added to the project.
+
+2. More dataset can be added to the project to further capture more details 
+about a pokemon.
+
+3. Caching can also be implemented in the future to further speed up the 
+retrival of data from the database, since the pokemon entity has a lot of 
+related tables that needs to be joined in a single request.
