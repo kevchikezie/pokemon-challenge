@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Services\PokemonService;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class PokemonController extends Controller
@@ -64,6 +65,24 @@ class PokemonController extends Controller
         $pokemon = $this->pokemonService->findRecord($id);
         
         return view('edit_pokemon', compact('pokemon'));
+    }
+
+    /**
+     * List all pokemon
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        DB::beginTransaction();
+        $updated = $this->pokemonService->updateRecord($id, $request->all());
+        DB::commit();
+
+        if (! $updated) return redirect()->back()->with('error', 'Failed to updated Pokemon!');
+
+        return redirect()->back()->with('success', 'Pokemon updated successfully!');
     }
 
 }
