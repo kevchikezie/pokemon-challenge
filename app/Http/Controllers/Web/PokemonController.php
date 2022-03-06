@@ -41,7 +41,7 @@ class PokemonController extends Controller
     }
 
     /**
-     * List all pokemon
+     * * Dsiplay details of a pokemon
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -55,7 +55,7 @@ class PokemonController extends Controller
     }
 
     /**
-     * List all pokemon
+     * Dsiplay the edit page with the details of a pokemon
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -69,7 +69,7 @@ class PokemonController extends Controller
     }
 
     /**
-     * List all pokemon
+     * Update the details of a pokemon
      * 
      * @param  \App\Http\Requests\UpdatePokemonRequest  $request
      * @param  int  $id

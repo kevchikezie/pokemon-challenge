@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/pokemons', 'PokemonController@index')->name('api.pokemons.index');
+Route::get('/pokemons/{id}', 'PokemonController@show')->name('api.pokemons.show');
