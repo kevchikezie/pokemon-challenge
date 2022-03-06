@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Services\PokemonService;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PokemonResource;
+use App\Http\Resources\PokemonCollection;
 
 
 class PokemonController extends Controller
@@ -36,11 +38,7 @@ class PokemonController extends Controller
     {
         $pokemons = $this->pokemonService->paginatedRecords();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Fetched pokemons successfully',
-            'data' => $pokemons
-        ], 200);
+        return new PokemonCollection($pokemons);
     }
 
     /**
@@ -61,11 +59,7 @@ class PokemonController extends Controller
             ], 404);
         }
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Fetched pokemon details successfully',
-            'data' => $pokemon
-        ], 200);
+        return new PokemonResource($pokemon);
     }
 
 }
