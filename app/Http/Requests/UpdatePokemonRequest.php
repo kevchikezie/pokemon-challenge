@@ -24,7 +24,7 @@ class UpdatePokemonRequest extends FormRequest
     public function rules()
     {
         return [
-            'pokemon_name' => ['required', 'integer'],
+            'pokemon_name' => ['required', 'string'],
             'weight' => ['required', 'integer'],
             'height' => ['required', 'integer'],
             'base_experience' => ['required', 'integer'],

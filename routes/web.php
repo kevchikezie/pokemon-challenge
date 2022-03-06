@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'PokemonController@index')->name('pokemons.index');
-Route::get('/pokemons/{id}', 'PokemonController@show')->name('pokemons.show');
-Route::get('/pokemons/{id}/edit', 'PokemonController@edit')->name('pokemons.edit');
-Route::put('/pokemons/{id}', 'PokemonController@update')->name('pokemons.update');
+
+Route::group(['prefix' => 'pokemons'], function () {
+    Route::get('/{id}', 'PokemonController@show')->name('pokemons.show');
+    Route::get('/{id}/edit', 'PokemonController@edit')->name('pokemons.edit');
+    Route::put('/{id}', 'PokemonController@update')->name('pokemons.update');
+});
